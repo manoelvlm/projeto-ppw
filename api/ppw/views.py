@@ -38,6 +38,7 @@ def investidors_genre_view(request):
 
 def accession_trend_view(request):
     accession_trend = list(accession_trend_by_time_query())
+    print (accession_trend)
     return _build_response(accession_trend)
 
 def most_common_carrer_view(request):

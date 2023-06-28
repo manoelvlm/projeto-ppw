@@ -54,8 +54,10 @@ def investidors_genre_query():
 def accession_trend_by_time_query():
     return (
         Investidor.objects
+        .all()
         .annotate(year=Cast(Substr('accession_date', 7), output_field=IntegerField()))
-        .annotate(count=Count("year"))
+        .values("year")
+        .annotate(total_by_year=Count("year"))
         .order_by('-year')
     )
 
