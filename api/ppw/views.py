@@ -1,19 +1,16 @@
-from ppw.data.relational_queries import (
-    age_distribution_query,
-    top_3_most_common_jobs_query,
-    active_inactive_investidors_query,
-    state_with_most_investidors_query,
-    city_with_most_investidors_query,
-    investidors_genre_query,
-    accession_trend_by_time_query,
-    most_common_job_query,
-    carreer_investidor_activity_year_query,
-    civil_status_investidors_activity_query
-)
 from django.http import JsonResponse
+from ppw.data.relational_queries import (
+    accession_trend_by_time_query, active_inactive_investidors_query,
+    age_distribution_query, carreer_investidor_activity_year_query,
+    city_with_most_investidors_query, civil_status_investidors_activity_query,
+    investidors_genre_query, most_common_job_query,
+    state_with_most_investidors_query, top_3_most_common_jobs_query)
+
 
 def age_distribution_view(request):
-    age_distribution = list(age_distribution_query())
+    age_min = request.GET.get('age_min', 18)
+    age_max = request.GET.get('age_max', 100)
+    age_distribution = list(age_distribution_query(age_min, age_max))
     return _build_response(age_distribution)
 
 def top_3_most_common_jobs_view(request):
@@ -29,11 +26,13 @@ def state_most_investidors_lives_view(request):
     return _build_response(state_most_investidors)
 
 def city_most_investidors_lives_view(request):
-    city_most_investidors = list(city_with_most_investidors_query())
+    state = request.GET.get('state')
+    city_most_investidors = list(city_with_most_investidors_query(state))
     return _build_response(city_most_investidors)
 
 def investidors_genre_view(request):
-    investidors_genre = list(investidors_genre_query())
+    age = request.GET.get('age')
+    investidors_genre = list(investidors_genre_query(age))
     return _build_response(investidors_genre)
 
 def accession_trend_view(request):
