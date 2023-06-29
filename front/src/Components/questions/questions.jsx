@@ -21,8 +21,7 @@ function Questions() {
         console.log(age);
         try {
             const res = await axios.get(`http://44.202.57.21:8000/api/age-distribution?age_min=${age[0]}&age_max=${age[1]}`);
-            // setResponse(res.data);
-            console.log(res.data);
+            setResponse(res.data);
         } catch (error) {
             console.error(error);
             setResponse("Erro ao buscar dados");
@@ -184,11 +183,11 @@ function Questions() {
             <div>
                 <Accordion multiple activeIndex={[value]}>
 
-                    <AccordionTab header={"Qual é a distribuição de idade entre os investidores cadastrados no programa Tesouro Direto?"}>
+                    <AccordionTab header="Qual é a distribuição de idade entre os investidores cadastrados no programa Tesouro Direto?">
                         <div className="age_distribution_view">
                             <InputText value={age} onChange={(e) => setAge(e.target.value)} />
                             <Slider value={age} onChange={(e) => setAge(e.value)} range />
-                            <br></br>
+                            <br />
                             <Button label="Enviar" icon="pi pi-check" loading={loading} onClick={age_distribution} />
                         </div>
                         <div className="response">
@@ -199,6 +198,7 @@ function Questions() {
                             </Card>
                         </div>
                     </AccordionTab>
+
 
                     <AccordionTab header={"Quais são as três profissões mais comum entre os investidores?"}>
                         <div className="slider-input">
@@ -245,7 +245,7 @@ function Questions() {
                         </div>
                     </AccordionTab>
 
-                    <AccordionTab header={"Qual é a cidade com o maior número de investidores registrados?"}>
+                    <AccordionTab header={"Quais são as três cidades com os maiores números de investidores registrados por estado?"}>
                         <div className="slider-input">
                             <InputText value={stateValue} onChange={(e) => setStateValue(e.target.value)} />
                             <br></br>
@@ -275,7 +275,7 @@ function Questions() {
                             </Card>
                         </div>
                     </AccordionTab>
-                    <AccordionTab header={"Qual é a proporção de gêneros entre os investidores?"}>
+                    <AccordionTab header={"Qual é a proporção de gêneros entre os investidores por idade?"}>
                         <div className="slider-input">
                             <InputText value={idade} onChange={(e) => setIdade(e.target.value)} />
                             <br></br>
@@ -284,7 +284,7 @@ function Questions() {
                         <div className="response">
                             <Card title="Response">
                                 {response && response.result.map((item, index) => (
-                                    <p key={index}>Gênero: {item.gender}, Total: {item.total}</p>
+                                    <p key={index}>Gênero: {item.genre}, Total: {item.total}</p>
                                 ))}
                             </Card>
                         </div>
