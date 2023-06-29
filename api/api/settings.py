@@ -37,12 +37,13 @@ SECRET_KEY = 'django-insecure-j2enp0j&zvj9qv=(%@lq6ue#6jn--$d$)03xud8wkjuxg$_4($
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.95.34.175']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -116,6 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
