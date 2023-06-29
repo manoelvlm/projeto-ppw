@@ -11,14 +11,18 @@ function Questions() {
     const [stateValue, setStateValue] = useState("");
     const [ageValue, setAgeValue] = useState(18);
     const [value, setValue] = useState("");
+    const [age, setAge] = useState("");
+    const [idade, setIdade] = useState("");
     const [response, setResponse] = useState(null);
 
     const age_distribution = async () => {
         setLoading(true);
 
+        console.log(age);
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/age-distribution?age_min=${value[0]}&age_max=${value[1]}`);
-            setResponse(res.data);
+            const res = await axios.get(`http://44.202.57.21:8000/api/age-distribution?age_min=${age[0]}&age_max=${age[1]}`);
+            // setResponse(res.data);
+            console.log(res.data);
         } catch (error) {
             console.error(error);
             setResponse("Erro ao buscar dados");
@@ -31,7 +35,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/top-n-common-jobs/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/top-n-common-jobs/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -45,7 +49,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/active-inactive-investidors/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/active-inactive-investidors/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -59,7 +63,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/state-most-investidors/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/state-most-investidors/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -73,7 +77,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/city-most-investidors/?state=${state}`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/city-most-investidors/?state=${state}`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -87,7 +91,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/civil-status-year-activity/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/civil-status-year-activity/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -101,7 +105,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/investidors-genre/?age=${age}`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/investidors-genre/?age=${idade}`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -116,7 +120,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/accession-date-trend/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/accession-date-trend/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -130,7 +134,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/most-common-jobs-year-activities/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/most-common-jobs-year-activities/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -144,7 +148,7 @@ function Questions() {
         setLoading(true);
 
         try {
-            const res = await axios.get(`http://54.226.6.205:8000/api/investidor-activity-year-carreer/`);
+            const res = await axios.get(`http://44.202.57.21:8000/api/investidor-activity-year-carreer/`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -182,8 +186,8 @@ function Questions() {
 
                     <AccordionTab header={"Qual é a distribuição de idade entre os investidores cadastrados no programa Tesouro Direto?"}>
                         <div className="age_distribution_view">
-                            <InputText value={value} onChange={(e) => setValue(e.target.value)} />
-                            <Slider value={value} onChange={(e) => setValue(e.value)} range />
+                            <InputText value={age} onChange={(e) => setAge(e.target.value)} />
+                            <Slider value={age} onChange={(e) => setAge(e.value)} range />
                             <br></br>
                             <Button label="Enviar" icon="pi pi-check" loading={loading} onClick={age_distribution} />
                         </div>
@@ -273,9 +277,9 @@ function Questions() {
                     </AccordionTab>
                     <AccordionTab header={"Qual é a proporção de gêneros entre os investidores?"}>
                         <div className="slider-input">
-                            <InputText value={ageValue} onChange={(e) => setAgeValue(e.target.value)} />
+                            <InputText value={idade} onChange={(e) => setIdade(e.target.value)} />
                             <br></br>
-                            <Button label="Enviar" icon="pi pi-check" loading={loading} onClick={() => investidors_genre(ageValue)} />
+                            <Button label="Enviar" icon="pi pi-check" loading={loading} onClick={() => investidors_genre(idade)} />
                         </div>
                         <div className="response">
                             <Card title="Response">

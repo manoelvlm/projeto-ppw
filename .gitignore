@@ -1,2 +1,5 @@
 .env
 __pycache__
+
+#node_modules
+./projeto-ppw/ppw/data/front/node_modules
