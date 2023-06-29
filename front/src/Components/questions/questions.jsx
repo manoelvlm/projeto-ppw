@@ -15,7 +15,7 @@ function Questions() {
         setLoading(true);
         
         try {
-            const res = await axios.get(`http://3.95.34.175:8000/api/age-distribution?age_min=${value[0]}&age_max=${value[1]}`);
+            const res = await axios.get(`http://54.226.6.205:8000/api/age-distribution?age_min=${value[0]}&age_max=${value[1]}`);
             setResponse(res.data);
         } catch (error) {
             console.error(error);
@@ -59,7 +59,9 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                <p>{response}</p>
+                                {response && response.result.map((item, index) => (
+        <p key={index}>Idade: {item.age}, Total: {item.total}</p>
+    ))}
                             </Card>
                         </div>
                     </AccordionTab>
