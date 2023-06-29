@@ -1,23 +1,30 @@
-import React, { useState } from "react";
 import axios from "axios";
-import { Slider } from 'primereact/slider';
-import { Card } from 'primereact/card';
 import { Accordion, AccordionTab } from 'primereact/accordion';
-import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
-
+import { Card } from 'primereact/card';
+import { InputText } from "primereact/inputtext";
+import { Slider } from 'primereact/slider';
+import React, { useState } from "react";
 
 function Questions() {
     const [loading, setLoading] = useState(false);
-
-    const load = () => {
-        setLoading(true);
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-    };
     const [value, setValue] = useState([18, 20]);
+    const [response, setResponse] = useState(null);
+
+    const load = async () => {
+        setLoading(true);
+        
+        try {
+            const res = await axios.get(`http://3.95.34.175:8000/api/age-distribution?age_min=${value[0]}&age_max=${value[1]}`);
+            setResponse(res.data);
+        } catch (error) {
+            console.error(error);
+            setResponse("Erro ao buscar dados");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div>
             <div>
@@ -44,7 +51,7 @@ function Questions() {
             <div>
                 <Accordion multiple activeIndex={[value]}>
                     <AccordionTab header={"Qual é a distribuição de idade entre os investidores cadastrados no programa Tesouro Direto?"}>
-                        <div className="slider-input">
+                        <div className="age_distribution_view">
                             <InputText value={value} onChange={(e) => setValue(e.target.value)} />
                             <Slider value={value} onChange={(e) => setValue(e.value)} range />
                             <br></br>
@@ -52,7 +59,7 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                <p>respostas vão aqui</p>
+                                <p>{response}</p>
                             </Card>
                         </div>
                     </AccordionTab>
