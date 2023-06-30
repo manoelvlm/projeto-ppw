@@ -254,7 +254,7 @@ function Questions() {
                         <div className="response">
                             <Card title="Response">
                                 {response && response.result.map((item, index) => (
-                                    <p key={index}>Cidade: {item.city}, Total: {item.state_count}</p>
+                                    <p key={index}>Cidade: {item.city}, Total: {item.city_count}</p>
                                 ))}
                             </Card>
                         </div>
