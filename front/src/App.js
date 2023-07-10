@@ -7,8 +7,12 @@ import Questions from './Components/questions/questions';
 function App() {
   return (
     <div className="App">
-      <h1>Consulta aos dados - PPW</h1>
-      <Questions/>
+      <div className='header'>
+        <h1>Consulta aos dados - PPW</h1>
+      </div>
+      <div>
+        <Questions/>
+      </div>
     </div>
   );
 }
