@@ -5,10 +5,12 @@ import { Card } from 'primereact/card';
 import { InputText } from "primereact/inputtext";
 import { Slider } from 'primereact/slider';
 import React, { useState } from "react";
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 function Questions() {
 
-    const SERVERIP = '35.171.22.52';
+    const SERVERIP = '3.83.112.22';
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const [loading3, setLoading3] = useState(false);
@@ -29,6 +31,45 @@ function Questions() {
     const [response8, setResponse8] = useState(null);
     const [response9, setResponse9] = useState(null);
 
+    const columns = [
+        { field: 'city', header: 'Cidade' },
+        { field: 'city_count', header: 'Quantidade' },
+    ];
+    const columns2 = [
+        { field: 'age', header: 'Idade' },
+        { field: 'total', header: 'Quantidade' },
+    ];
+    const columns3 = [
+        { field: 'carreer', header: 'Profissão' },
+        { field: 'carrer_count', header: 'Quantidade' },
+    ];
+    const columns4 = [
+        { field: 'account_status', header: 'Status' },
+        { field: 'total', header: 'Quantidade' },
+    ];
+    const columns5 = [
+        { field: 'state', header: 'Profissão' },
+        { field: 'state_count', header: 'Quantidade' },
+    ];
+    const columns6 = [
+        { field: 'civil_state', header: 'Estado Civil' },
+        { field: 'had_activity', header: 'Teve Atividade' },
+        { field: 'had_not_activity', header: 'Não teve Atividade' }
+    ];
+    const columns7 = [
+        { field: 'age', header: 'Idade' },
+        { field: 'genre', header: 'Gênero' },
+        { field: 'total', header: 'Quantidade' },
+    ];
+    const columns8 = [
+        { field: 'year', header: 'Ano' },
+        { field: 'total_by_year', header: 'Quantidade' },
+    ];
+    const columns9 = [
+        { field: 'carreer', header: 'Profissão' },
+        { field: 'had_activity', header: 'Teve Atividade' },
+        { field: 'had_not_activity', header: 'Não teve Atividade' }
+    ];
 
 
     const [stateValue, setStateValue] = useState("");
@@ -52,8 +93,8 @@ function Questions() {
 
         console.log(age);
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/age-distribution?age_min=${age[0]}&age_max=${age[1]}`);
-            setResponse(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/age-distribution?age_min=${age[0]}&age_max=${age[1]}`);
+            setResponse(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse("Erro ao buscar dados");
@@ -66,8 +107,8 @@ function Questions() {
         setLoading2(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/top-n-common-jobs/`);
-            setResponse2(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/top-n-common-jobs/`);
+            setResponse2(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse2("Erro ao buscar dados");
@@ -80,8 +121,8 @@ function Questions() {
         setLoading3(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/active-inactive-investidors/`);
-            setResponse3(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/active-inactive-investidors/`);
+            setResponse3(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse3("Erro ao buscar dados");
@@ -94,8 +135,8 @@ function Questions() {
         setLoading4(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/state-most-investidors/`);
-            setResponse4(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/state-most-investidors/`);
+            setResponse4(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse4("Erro ao buscar dados");
@@ -108,8 +149,9 @@ function Questions() {
         setLoading5(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/city-most-investidors?state=${uf}`);
-            setResponse5(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/city-most-investidors?state=${uf}`);
+
+            setResponse5(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse5("Erro ao buscar dados");
@@ -122,8 +164,8 @@ function Questions() {
         setLoading6(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/civil-status-year-activity/`);
-            setResponse6(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/civil-status-year-activity/`);
+            setResponse6(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse6("Erro ao buscar dados");
@@ -136,8 +178,8 @@ function Questions() {
         setLoading7(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/investidors-genre?age=${ageUF}`);
-            setResponse7(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/investidors-genre?age=${ageUF}`);
+            setResponse7(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse7("Erro ao buscar dados");
@@ -151,8 +193,8 @@ function Questions() {
         setLoading8(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/accession-date-trend/`);
-            setResponse8(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/accession-date-trend/`);
+            setResponse8(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse8("Erro ao buscar dados");
@@ -165,8 +207,8 @@ function Questions() {
         setLoading9(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/most-common-jobs-year-activities/`);
-            setResponse(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/most-common-jobs-year-activities/`);
+            setResponse(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse("Erro ao buscar dados");
@@ -179,8 +221,8 @@ function Questions() {
         setLoading9(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/investidor-activity-year-carreer/`);
-            setResponse9(res.data);
+            const res = await axios.get(`http://${SERVERIP}/api/investidor-activity-year-carreer/`);
+            setResponse9(res.data.result);
         } catch (error) {
             console.error(error);
             setResponse9("Erro ao buscar dados");
@@ -224,9 +266,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response && response.result.map((item, index) => (
-                                    <p key={index}>Idade: {item.age}, Total: {item.total}</p>
-                                ))}
+                                <DataTable value={response} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns2.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -238,9 +282,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response2 && response2.result.map((item, index) => (
-                                    <p key={index}>Carreira: {item.carreer}, Total: {item.carrer_count}</p>
-                                ))}
+                                <DataTable value={response2} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns3.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -251,9 +297,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response3 && response3.result.map((item, index) => (
-                                    <p key={index}>Status: {item.account_status}, Total: {item.total}</p>
-                                ))}
+                                <DataTable value={response3} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns4.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -264,9 +312,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response4 && response4.result.map((item, index) => (
-                                    <p key={index}>Estado: {item.state}, Total: {item.state_count}</p>
-                                ))}
+                                <DataTable value={response4} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns5.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -278,9 +328,13 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response5 && response5.result.map((item, index) => (
-                                    <p key={index}>Cidade: {item.city}, Total: {item.city_count}</p>
-                                ))}
+                                <div className="card">
+                                    <DataTable value={response5} tableStyle={{ minWidth: '50rem' }}>
+                                        {columns.map((col, i) => (
+                                            <Column key={col.field} field={col.field} header={col.header} />
+                                        ))}
+                                    </DataTable>
+                                </div>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -290,11 +344,11 @@ function Questions() {
                             <Button label="Enviar" icon="pi pi-check" loading={loading6} onClick={civil_status_investidors_activity} />
                         </div>
                         <div className="response">
-                            <Card title="Response">
-                                {response6 && response6.result.map((item, index) => (
-                                    <p key={index}>Estado civil: {item.civil_state}, Teve atividade: {item.had_activity}, Não teve atividade: {item.had_not_activity}</p>
+                            <DataTable value={response6} tableStyle={{ minWidth: '50rem' }}>
+                                {columns6.map((col, i) => (
+                                    <Column key={col.field} field={col.field} header={col.header} />
                                 ))}
-                            </Card>
+                            </DataTable>
                         </div>
                     </AccordionTab>
                     <AccordionTab header={"Qual é a proporção de gêneros entre os investidores por idade?"}>
@@ -304,9 +358,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response7 && response7.result.map((item, index) => (
-                                    <p key={index}>Gênero: {item.genre}, Total: {item.total}</p>
-                                ))}
+                                <DataTable value={response7} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns7.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -317,9 +373,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response8 && response8.result.map((item, index) => (
-                                    <p key={index}>Ano: {item.year}, Total: {item.total_by_year}</p>
-                                ))}
+                                <DataTable value={response8} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns8.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
@@ -330,9 +388,11 @@ function Questions() {
                         </div>
                         <div className="response">
                             <Card title="Response">
-                                {response9 && response9.result.map((item, index) => (
-                                    <p key={index}>Profissão: {item.carreer}, Teve atividade: {item.had_activity}, Não teve atividade: {item.had_not_activity}</p>
-                                ))}
+                                <DataTable value={response9} tableStyle={{ minWidth: '50rem' }}>
+                                    {columns9.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable>
                             </Card>
                         </div>
                     </AccordionTab>
