@@ -8,7 +8,7 @@ import React, { useState } from "react";
 
 function Questions() {
 
-    const SERVERIP = '44.203.77.25';
+    const SERVERIP = '35.171.22.52';
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const [loading3, setLoading3] = useState(false);
@@ -36,6 +36,8 @@ function Questions() {
     const [value, setValue] = useState("");
     const [age, setAge] = useState("");
     const [idade, setIdade] = useState("");
+    const [ageUF, setAgeUF] = useState("");
+    const [uf, setuf] = useState("");
 
     const cardInfoStyle = {
         backgroundColor: '#B6C9E3',
@@ -65,7 +67,7 @@ function Questions() {
 
         try {
             const res = await axios.get(`http://${SERVERIP}:8000/api/top-n-common-jobs/`);
-                setResponse2(res.data);
+            setResponse2(res.data);
         } catch (error) {
             console.error(error);
             setResponse2("Erro ao buscar dados");
@@ -93,7 +95,7 @@ function Questions() {
 
         try {
             const res = await axios.get(`http://${SERVERIP}:8000/api/state-most-investidors/`);
-                setResponse4(res.data);
+            setResponse4(res.data);
         } catch (error) {
             console.error(error);
             setResponse4("Erro ao buscar dados");
@@ -106,7 +108,7 @@ function Questions() {
         setLoading5(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/city-most-investidors/`);
+            const res = await axios.get(`http://${SERVERIP}:8000/api/city-most-investidors?state=${uf}`);
             setResponse5(res.data);
         } catch (error) {
             console.error(error);
@@ -121,7 +123,7 @@ function Questions() {
 
         try {
             const res = await axios.get(`http://${SERVERIP}:8000/api/civil-status-year-activity/`);
-                setResponse6(res.data);
+            setResponse6(res.data);
         } catch (error) {
             console.error(error);
             setResponse6("Erro ao buscar dados");
@@ -134,7 +136,7 @@ function Questions() {
         setLoading7(true);
 
         try {
-            const res = await axios.get(`http://${SERVERIP}:8000/api/investidors-genre/`);
+            const res = await axios.get(`http://${SERVERIP}:8000/api/investidors-genre?age=${ageUF}`);
             setResponse7(res.data);
         } catch (error) {
             console.error(error);
@@ -150,7 +152,7 @@ function Questions() {
 
         try {
             const res = await axios.get(`http://${SERVERIP}:8000/api/accession-date-trend/`);
-                setResponse8(res.data);
+            setResponse8(res.data);
         } catch (error) {
             console.error(error);
             setResponse8("Erro ao buscar dados");
@@ -178,7 +180,7 @@ function Questions() {
 
         try {
             const res = await axios.get(`http://${SERVERIP}:8000/api/investidor-activity-year-carreer/`);
-                setResponse9(res.data);
+            setResponse9(res.data);
         } catch (error) {
             console.error(error);
             setResponse9("Erro ao buscar dados");
@@ -214,7 +216,7 @@ function Questions() {
                 <Accordion multiple activeIndex={[value]}>
 
                     <AccordionTab header="Qual é a distribuição de idade entre os investidores cadastrados no programa Tesouro Direto?">
-                        <div className="age_distribution_view">
+                        <div className="card flex small">
                             <InputText value={age} onChange={(e) => setAge(e.target.value)} />
                             <Slider value={age} onChange={(e) => setAge(e.value)} range />
                             <br />
@@ -270,8 +272,9 @@ function Questions() {
                     </AccordionTab>
 
                     <AccordionTab header={"Quais são as três cidades com os maiores números de investidores registrados por estado?"}>
-                        <div className="slider-input">
-                            <Button label="Enviar" icon="pi pi-check" loading={loading5} onClick={city_most_investidors_lives} />
+                        <div className="card">
+                            <InputText value={uf} onChange={(e) => setuf(e.target.value)} />
+                            <Button label="Enviar" icon="pi pi-check" loading={loading5} onClick={() => city_most_investidors_lives(uf)} />
                         </div>
                         <div className="response">
                             <Card title="Response">
@@ -295,8 +298,9 @@ function Questions() {
                         </div>
                     </AccordionTab>
                     <AccordionTab header={"Qual é a proporção de gêneros entre os investidores por idade?"}>
-                        <div className="slider-input">
-                            <Button label="Enviar" icon="pi pi-check" loading={loading7} onClick={() => investidors_genre(idade)} />
+                        <div className="card">
+                            <InputText value={ageUF} onChange={(e) => setAgeUF(e.target.value)} />
+                            <Button label="Enviar" icon="pi pi-check" loading={loading7} onClick={() => investidors_genre(ageUF)} />
                         </div>
                         <div className="response">
                             <Card title="Response">
