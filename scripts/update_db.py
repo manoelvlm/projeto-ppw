@@ -9,19 +9,18 @@ from psycopg2 import sql
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.edge.service import Service
+from selenium.webdriver.firefox.service import Service as FirefoxService
 from sqlalchemy import create_engine
+from webdriver_manager.firefox import GeckoDriverManager
 
 load_dotenv()
 
 def get_zip_file():
-  edge_options = webdriver.EdgeOptions()
+  firefox_options = webdriver.FirefoxOptions()
 
-  edge_options.add_argument("--user-data-dir=~/.config/microsoft-edge")
-  edge_options.add_argument('--profile-directory=Default')
-  edge_options.add_argument('--headless')
+  firefox_options.add_argument('--headless')
 
-  driver = webdriver.Edge(service=Service('/usr/local/bin/msedgedriver'), options=edge_options)
+  driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)    
   driver.get('https://www.tesourotransparente.gov.br/ckan/dataset/investidores-do-tesouro-direto')
 
   download_link = driver.find_element(By.XPATH, '//a[contains(@href, "TesouroDireto.zip")]')
