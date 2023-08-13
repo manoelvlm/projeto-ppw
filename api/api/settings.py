@@ -120,8 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://3.82.222.41:8000",
-    "http://3.82.222.41:3000"
+    "http://50.19.95.59:8000",
+    "http://50.19.95.59:3000"
 ]
 
 # Internationalization
