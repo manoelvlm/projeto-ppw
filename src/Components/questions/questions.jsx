@@ -2,15 +2,15 @@ import axios from "axios";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import { InputText } from "primereact/inputtext";
 import { Slider } from 'primereact/slider';
 import React, { useState } from "react";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 
 function Questions() {
 
-    const SERVERIP = '3.82.222.41';
+    const SERVERIP = '50.19.95.59';
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const [loading3, setLoading3] = useState(false);
