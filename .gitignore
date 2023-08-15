@@ -29,3 +29,5 @@ yarn-error.log*
 .~/.config/
 /scripts/~
 ~/.config/
+
+/home/ubuntu/projeto-ppw/api/api

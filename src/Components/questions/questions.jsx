@@ -7,10 +7,11 @@ import { DataTable } from 'primereact/datatable';
 import { InputText } from "primereact/inputtext";
 import { Slider } from 'primereact/slider';
 import React, { useState } from "react";
+import ReactGA from "react-ga4";
 
 function Questions() {
 
-    const SERVERIP = '50.19.95.59';
+    const SERVERIP = 'tesourodireto.online';
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const [loading3, setLoading3] = useState(false);
