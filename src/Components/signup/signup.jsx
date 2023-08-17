@@ -4,7 +4,7 @@ import { Button, Col, Container, Form, FormGroup, FormLabel, Row } from "react-b
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const signupAPI = "http://localhost:8000/api/signup"
+const signupAPI = "http://tesourodireto.online/api/signup"
 
 const Login = () => {
     const navigate = useNavigate();

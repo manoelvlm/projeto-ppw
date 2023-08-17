@@ -4,7 +4,7 @@ import { Modal, Button, Col, Container, Form, FormGroup, FormLabel, Row } from "
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const loginAPI = "http://localhost:8000/api/login"
+const loginAPI = "http://tesourodireto.online/api/login"
 
 const Login = () => {
     const [show, setShow] = useState(false);
