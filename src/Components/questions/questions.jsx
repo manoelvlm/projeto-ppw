@@ -6,7 +6,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { InputText } from "primereact/inputtext";
 import { Slider } from 'primereact/slider';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Nav } from "react-bootstrap";
@@ -99,6 +99,11 @@ function Questions() {
         fontWeight: 'bold',
         borderRadius: '10px',
     };
+
+
+    useEffect(() => {
+        document.title = 'Tesouro Direto';
+      }, []);
 
 
     const age_distribution = async () => {

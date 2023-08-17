@@ -1,12 +1,16 @@
 import axios from "axios";
-import React from "react";
-import { Button, Col, Container, Form, FormGroup, FormLabel, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Modal, Button, Col, Container, Form, FormGroup, FormLabel, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const loginAPI = "http://localhost:8000/api/login"
 
 const Login = () => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const showLoginError = () => setShow(true);
+  
     const navigate = useNavigate();
     const submitLoginForm = (event) => {
         event.preventDefault();
@@ -14,7 +18,7 @@ const Login = () => {
         const formData = new FormData(formElement);
         const formDataJSON = Object.fromEntries(formData);
         const btnPointer = document.querySelector('#login-btn');
-        btnPointer.innerHTML = 'Please wait..';
+        btnPointer.innerHTML = 'Carregando...';
         btnPointer.setAttribute('disabled', true);
         console.log(formDataJSON);
         axios.post(loginAPI, formDataJSON).then((response) => {
@@ -27,14 +31,18 @@ const Login = () => {
                 localStorage.setItem('user-token', token);
                 navigate('/');
             } else {
-                alert("Login e/ou senha inválidos.");
+                showLoginError();
             }
         }).catch((error) => {
             btnPointer.innerHTML = 'Login';
             btnPointer.removeAttribute('disabled');
-            alert("Oops! Some error occured.");
+            showLoginError();
         });
     }
+
+    useEffect(() => {
+        document.title = 'Tesouro Direto - Login';
+      }, []);
 
     const signup = (event) => {
         event.preventDefault();
@@ -43,6 +51,17 @@ const Login = () => {
     return (
         <React.Fragment>
             <Container className="my-5">
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Erro ao logar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Login e/ou senha inválido(s)! Tente novamente.</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Fechar
+                </Button>
+                </Modal.Footer>
+            </Modal>
                 <h2 className="fw-normal mb-5">Login</h2>
                 <Row>
                     <Col md={{span: 6}}>

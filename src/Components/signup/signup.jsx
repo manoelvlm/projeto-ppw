@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Col, Container, Form, FormGroup, FormLabel, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,21 +14,27 @@ const Login = () => {
         const formData = new FormData(formElement);
         const formDataJSON = Object.fromEntries(formData);
         const btnPointer = document.querySelector('#login-btn');
-        btnPointer.innerHTML = 'Please wait..';
+        btnPointer.innerHTML = 'Carregando...';
         btnPointer.setAttribute('disabled', true);
         console.log(formDataJSON);
         axios.post(signupAPI, formDataJSON).then((response) => {
             btnPointer.innerHTML = 'Login';
             btnPointer.removeAttribute('disabled');
             const data = response.data;
-            console.log(data);
-            navigate('/login');
+            if (data.result.error == undefined) {
+                navigate('/login');
+            } else {
+                alert("Dados de cadastro inválidos.");
+            }
         }).catch((error) => {
             btnPointer.innerHTML = 'Login';
             btnPointer.removeAttribute('disabled');
             alert("Oops! Some error occured.");
         });
     }
+    useEffect(() => {
+        document.title = 'Tesouro Direto - Cadastro';
+      }, []);
     return (
         <React.Fragment>
             <Container className="my-5">
