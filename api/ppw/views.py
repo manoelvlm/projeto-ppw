@@ -45,21 +45,24 @@ def signup(request):
         user = authe.create_user_with_email_and_password(email, passs)
         uid = user['localId']
         idtoken = request.session['uid']
-     except:
+     except Exception as ex:
+        print (ex)
         return  _build_response({"result": "error to sign up"})
      return _build_response({"result": "success"})
 
 @csrf_exempt
 def login(request):
-    email = request.POST.get('email')
-    pasw = request.POST.get('pass')
+    data = json.loads(request.body)
+    email = data['email']
+    pasw = data['pass']
     try:
         user = authe.sign_in_with_email_and_password(email,pasw)
-    except:
-        return _build_response({"result": "invalid credentials"})
+    except Exception as ex:
+        print (ex)
+        return _build_response({"error": "invalid credentials"})
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
-    return _build_response({"result": "success"})
+    return _build_response({"token": session_id})
 
 @check_user_auth
 def age_distribution_view(request):

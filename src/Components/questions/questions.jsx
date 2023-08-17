@@ -7,9 +7,21 @@ import { DataTable } from 'primereact/datatable';
 import { InputText } from "primereact/inputtext";
 import { Slider } from 'primereact/slider';
 import React, { useState } from "react";
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Nav } from "react-bootstrap";
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from "react-router-dom";
 import ReactGA from "react-ga4";
 
 function Questions() {
+
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.clear();
+        navigate('/login');
+    }
 
     const SERVERIP = 'tesourodireto.online';
     const [loading, setLoading] = useState(false);
@@ -234,6 +246,21 @@ function Questions() {
 
     return (
         <div>
+            <React.Fragment>
+                <Navbar bg="dark" expand="lg" className="navbar-dark">
+                    <Container>
+                        <Navbar.Brand>Tesouro Direto</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="ms-auto">
+                                <Nav.Link>
+                                    <Button className="btn-warning" onClick={logout}>Logout</Button>
+                                </Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </React.Fragment>
             <div className="info-card">
                 <Card title="Sobre o dataset" style={cardInfoStyle}>
                     <p>

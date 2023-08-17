@@ -20,8 +20,8 @@ from ppw import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/login/', views.login, name='login'),
-    path('api/signup/', views.signup, name='signup'),
+    path('api/login', views.login, name='login'),
+    path('api/signup', views.signup, name='signup'),
     path('api/age-distribution/', views.age_distribution_view, name='age-distribution'),
     path('api/top-n-common-jobs/', views.top_3_most_common_jobs_view, name='top-3-common-jobs'),
     path('api/active-inactive-investidors/', views.active_inactive_investidors_view, name='active-inactive-investidors'),
