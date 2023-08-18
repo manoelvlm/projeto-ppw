@@ -7,13 +7,10 @@ import { DataTable } from 'primereact/datatable';
 import { InputText } from "primereact/inputtext";
 import { Slider } from 'primereact/slider';
 import React, { useState, useEffect } from "react";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import { Nav } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from "react-router-dom";
-import ReactGA from "react-ga4";
 
 function Questions() {
 
