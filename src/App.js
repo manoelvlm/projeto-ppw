@@ -22,7 +22,7 @@ function App() {
   console.log(isLoggedIn);
   return (
     <React.Fragment>
-        <Outlet />
+        <Outlet/>
     </React.Fragment>
   );
 }

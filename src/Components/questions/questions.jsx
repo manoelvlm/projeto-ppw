@@ -19,6 +19,12 @@ function Questions() {
         localStorage.clear();
         navigate('/login');
     }
+    const goToMap = () => {
+        navigate('/maps');
+    }
+    const padding = {
+        marginRight: '10px',
+    };
 
     const SERVERIP = 'tesourodireto.online';
     const [loading, setLoading] = useState(false);
@@ -256,7 +262,8 @@ function Questions() {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ms-auto">
                                 <Nav.Link>
-                                    <Button className="btn-warning" onClick={logout}>Logout</Button>
+                                    <Button className="btn-warning" onClick={logout} style={padding}>Logout</Button>
+                                    <Button className="btn-warning" onClick={goToMap}style={padding}>Ver mapa de acessos</Button>
                                 </Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
