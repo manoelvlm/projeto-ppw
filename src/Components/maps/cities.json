@@ -1,30 +1,37 @@
 [
-  {"city": "Aracaju", "country": "Brazil", "access": 5, "lat": "-10.9472", "lon": "-37.0731"},
-  {"city": "Maceió", "country": "Brazil", "access": 8, "lat": "-9.6658", "lon": "-35.7353"},
-  {"city": "Macapá", "country": "Brazil", "access": 3, "lat": "0.0356", "lon": "-51.0700"},
-  {"city": "Manaus", "country": "Brazil", "access": 9, "lat": "-3.1190", "lon": "-60.0217"},
-  {"city": "Salvador", "country": "Brazil", "access": 7, "lat": "-12.9714", "lon": "-38.5014"},
-  {"city": "Fortaleza", "country": "Brazil", "access": 6, "lat": "-3.7172", "lon": "-38.5433"},
-  {"city": "Brasília", "country": "Brazil", "access": 4, "lat": "-15.7942", "lon": "-47.8825"},
-  {"city": "Vitória", "country": "Brazil", "access": 2, "lat": "-20.3155", "lon": "-40.3128"},
-  {"city": "Goiânia", "country": "Brazil", "access": 7, "lat": "-16.6869", "lon": "-49.2643"},
-  {"city": "São Luís", "country": "Brazil", "access": 3, "lat": "-2.5387", "lon": "-44.2826"},
-  {"city": "Cuiabá", "country": "Brazil", "access": 6, "lat": "-15.6010", "lon": "-56.0974"},
-  {"city": "Campo Grande", "country": "Brazil", "access": 4, "lat": "-20.4697", "lon": "-54.6201"},
-  {"city": "Belo Horizonte", "country": "Brazil", "access": 9, "lat": "-19.9194", "lon": "-43.9386"},
-  {"city": "Belém", "country": "Brazil", "access": 5, "lat": "-1.4558", "lon": "-48.5038"},
-  {"city": "João Pessoa", "country": "Brazil", "access": 8, "lat": "-7.1153", "lon": "-34.8610"},
-  {"city": "Curitiba", "country": "Brazil", "access": 3, "lat": "-25.4296", "lon": "-49.2714"},
-  {"city": "Recife", "country": "Brazil", "access": 6, "lat": "-8.0476", "lon": "-34.8770"},
-  {"city": "Teresina", "country": "Brazil", "access": 7, "lat": "-5.0909", "lon": "-42.8038"},
-  {"city": "Rio de Janeiro", "country": "Brazil", "access": 4, "lat": "-22.9068", "lon": "-43.1729"},
-  {"city": "Natal", "country": "Brazil", "access": 2, "lat": "-5.7945", "lon": "-35.2110"},
-  {"city": "Porto Alegre", "country": "Brazil", "access": 9, "lat": "-30.0277", "lon": "-51.2287"},
-  {"city": "Porto Velho", "country": "Brazil", "access": 5, "lat": "-8.7607", "lon": "-63.8999"},
-  {"city": "Boa Vista", "country": "Brazil", "access": 8, "lat": "2.8235", "lon": "-60.6758"},
-  {"city": "Florianópolis", "country": "Brazil", "access": 3, "lat": "-27.5954", "lon": "-48.5480"},
-  {"city": "São Paulo", "country": "Brazil", "access": 6, "lat": "-23.5505", "lon": "-46.6333"},
-  {"city": "Palmas", "country": "Brazil", "access": 7, "lat": "-10.2437", "lon": "-48.3350"},
-  {"city": "Rio Branco", "country": "Brazil", "access": 4, "lat": "-9.9752", "lon": "-67.8249"}
+  {
+    "city": "Aracaju",
+    "country": "Brazil",
+    "access": "12",
+    "lat": "-10.9162061",
+    "lon": "-37.0774655"
+  },
+  {
+    "city": "(not set)",
+    "country": "Germany",
+    "access": "2",
+    "lat": "51.1638175",
+    "lon": "10.4478313"
+  },
+  {
+    "city": "(not set)",
+    "country": "United States",
+    "access": "2",
+    "lat": "39.7837304",
+    "lon": "-100.445882"
+  },
+  {
+    "city": "Barueri",
+    "country": "Brazil",
+    "access": "2",
+    "lat": "-23.5112184",
+    "lon": "-46.8764612"
+  },
+  {
+    "city": "Riyadh",
+    "country": "Saudi Arabia",
+    "access": "2",
+    "lat": "24.638916",
+    "lon": "46.7160104"
+  }
 ]
-
