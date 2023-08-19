@@ -47,12 +47,16 @@ def get_coordinates(locations_list):
     coordinates = []
 
     for location in locations_list:
-        r = requests.get(f'https://nominatim.openstreetmap.org/search?city={location["city"]}&country={location["country"]}&format=json')
-        data = r.json()[0]
+        if location['city'] == '(not set)':
+            r = requests.get(f'https://nominatim.openstreetmap.org/search?country={location["country"]}&format=json')
+        else:
+            r = requests.get(f'https://nominatim.openstreetmap.org/search?city={location["city"]}&country={location["country"]}&format=json')
+
+        data = r.json()
         
         coord = {
-            'lat': data['lat'],
-            'lon': data['lon']
+            'lat': data[0]['lat'],
+            'lon': data[0]['lon']
         }
         
         coordinates.append(coord)
