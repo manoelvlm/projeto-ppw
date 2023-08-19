@@ -14,33 +14,26 @@ from ppw.data.relational_queries import (
     state_with_most_investidors_query, top_3_most_common_jobs_query)
  
 config = {
-    "apiKey": "AIzaSyBWocM1wzV1lZh64h-IF1Owo-A3u8zrYlk",
-    "authDomain": "projeto-ppw.firebaseapp.com",
-    "databaseURL": "https://projeto-ppw-default-rtdb.firebaseio.com",
-    "projectId": "projeto-ppw",
-    "storageBucket": "projeto-ppw.appspot.com",
-    "messagingSenderId": "1021347829402",
-    "appId": "1:1021347829402:web:84b85d7e00f6956dbd3123"
+    "apiKey": os.environ['API_KEY'],
+    "authDomain": os.environ['AUTH_DOMAIN'],
+    "databaseURL": os.environ['FB_DB_URL'],
+    "projectId": os.environ['PROJECT_ID'],
+    "storageBucket": os.environ['STORAGE_BUCKET'],
+    "messagingSenderId": os.environ['SENDER_ID'],
+    "appId": os.environ['APP_ID']
 }
  
 # Initialising database,auth and firebase for further use
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database=firebase.database()
-PREFIX = 'Bearer '
-
-def get_token(header):
-    if not header.startswith(PREFIX):
-        raise ValueError('Invalid token')
-    return header[len(PREFIX):]
-
+ 
 def check_user_auth(view_func):
     @functools.wraps(view_func)
-    @csrf_exempt
     def wrapper(request, *args, **kwargs):
-        if 'token' not in request.session:
+        if 'uuid' not in request.session:
             return _build_response({"result": "error - user must be logged"})
-        return view_func(request)
+        return view_func(request, args, kwargs)
     return wrapper
  
 @csrf_exempt
@@ -50,7 +43,8 @@ def signup(request):
      passs = data['pass']
      try:
         user = authe.create_user_with_email_and_password(email, passs)
-        request.session['token'] = user['localId']
+        uid = user['localId']
+        idtoken = request.session['uid']
      except Exception as ex:
         print (ex)
         return  _build_response({"result": "error to sign up"})
@@ -67,7 +61,7 @@ def login(request):
         print (ex)
         return _build_response({"error": "invalid credentials"})
     session_id = user['idToken']
-    request.session['token'] = str(session_id)
+    request.session['uid'] = str(session_id)
     return _build_response({"token": session_id})
 
 @check_user_auth

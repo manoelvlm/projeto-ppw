@@ -97,13 +97,6 @@ function Questions() {
         borderRadius: '10px',
     };
 
-    const makeRequest = async (url) => {
-        const res = await axios.post(url, {}, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('user-token')}` }
-            })
-        return res;
-    }
-
 
     useEffect(() => {
         document.title = 'Tesouro Direto';
@@ -115,7 +108,7 @@ function Questions() {
 
         console.log(age);
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/age-distribution?age_min=${age[0]}&age_max=${age[1]}`);
+            const res = await axios.get(`https://${SERVERIP}/api/age-distribution?age_min=${age[0]}&age_max=${age[1]}`);
             setResponse(res.data.result);
         } catch (error) {
             console.error(error);
@@ -129,7 +122,7 @@ function Questions() {
         setLoading2(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/top-n-common-jobs/`);
+            const res = await axios.get(`https://${SERVERIP}/api/top-n-common-jobs/`);
             setResponse2(res.data.result);
         } catch (error) {
             console.error(error);
@@ -143,7 +136,7 @@ function Questions() {
         setLoading3(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/active-inactive-investidors/`);
+            const res = await axios.get(`https://${SERVERIP}/api/active-inactive-investidors/`);
             setResponse3(res.data.result);
         } catch (error) {
             console.error(error);
@@ -157,7 +150,7 @@ function Questions() {
         setLoading4(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/state-most-investidors/`);
+            const res = await axios.get(`https://${SERVERIP}/api/state-most-investidors/`);
             setResponse4(res.data.result);
         } catch (error) {
             console.error(error);
@@ -171,7 +164,7 @@ function Questions() {
         setLoading5(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/city-most-investidors?state=${uf}`);
+            const res = await axios.get(`https://${SERVERIP}/api/city-most-investidors?state=${uf}`);
 
             setResponse5(res.data.result);
         } catch (error) {
@@ -186,7 +179,7 @@ function Questions() {
         setLoading6(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/civil-status-year-activity/`);
+            const res = await axios.get(`https://${SERVERIP}/api/civil-status-year-activity/`);
             setResponse6(res.data.result);
         } catch (error) {
             console.error(error);
@@ -200,7 +193,7 @@ function Questions() {
         setLoading7(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/investidors-genre?age=${ageUF}`);
+            const res = await axios.get(`https://${SERVERIP}/api/investidors-genre?age=${ageUF}`);
             setResponse7(res.data.result);
         } catch (error) {
             console.error(error);
@@ -215,7 +208,7 @@ function Questions() {
         setLoading8(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/accession-date-trend/`);
+            const res = await axios.get(`https://${SERVERIP}/api/accession-date-trend/`);
             setResponse8(res.data.result);
         } catch (error) {
             console.error(error);
@@ -229,7 +222,7 @@ function Questions() {
         setLoading9(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/most-common-jobs-year-activities/`);
+            const res = await axios.get(`https://${SERVERIP}/api/most-common-jobs-year-activities/`);
             setResponse(res.data.result);
         } catch (error) {
             console.error(error);
@@ -243,7 +236,7 @@ function Questions() {
         setLoading9(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/investidor-activity-year-carreer/`);
+            const res = await axios.get(`https://${SERVERIP}/api/investidor-activity-year-carreer/`);
             setResponse9(res.data.result);
         } catch (error) {
             console.error(error);
