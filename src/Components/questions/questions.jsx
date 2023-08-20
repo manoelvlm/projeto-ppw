@@ -135,7 +135,7 @@ function Questions() {
         setLoading2(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/top-n-common-jobs/`);
+            const res = makeRequest(`https://${SERVERIP}/api/top-n-common-jobs`);
             setResponse2(res.data.result);
         } catch (error) {
             console.error(error);
@@ -149,7 +149,7 @@ function Questions() {
         setLoading3(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/active-inactive-investidors/`);
+            const res = makeRequest(`https://${SERVERIP}/api/active-inactive-investidors`);
             setResponse3(res.data.result);
         } catch (error) {
             console.error(error);
@@ -163,7 +163,7 @@ function Questions() {
         setLoading4(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/state-most-investidors/`);
+            const res = makeRequest(`https://${SERVERIP}/api/state-most-investidors`);
             setResponse4(res.data.result);
         } catch (error) {
             console.error(error);
@@ -192,7 +192,7 @@ function Questions() {
         setLoading6(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/civil-status-year-activity/`);
+            const res = makeRequest(`https://${SERVERIP}/api/civil-status-year-activity`);
             setResponse6(res.data.result);
         } catch (error) {
             console.error(error);
@@ -221,7 +221,7 @@ function Questions() {
         setLoading8(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/accession-date-trend/`);
+            const res = makeRequest(`https://${SERVERIP}/api/accession-date-trend`);
             setResponse8(res.data.result);
         } catch (error) {
             console.error(error);
@@ -235,7 +235,7 @@ function Questions() {
         setLoading9(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/most-common-jobs-year-activities/`);
+            const res = makeRequest(`https://${SERVERIP}/api/most-common-jobs-year-activities`);
             setResponse(res.data.result);
         } catch (error) {
             console.error(error);
@@ -249,7 +249,7 @@ function Questions() {
         setLoading9(true);
 
         try {
-            const res = makeRequest(`https://${SERVERIP}/api/investidor-activity-year-carreer/`);
+            const res = makeRequest(`https://${SERVERIP}/api/investidor-activity-year-carreer`);
             setResponse9(res.data.result);
         } catch (error) {
             console.error(error);
