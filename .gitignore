@@ -33,3 +33,4 @@ yarn-error.log*
 /home/ubuntu/projeto-ppw/api/api
 scripts/GA/credentials.json
 /home/ubuntu/projeto-ppw/api/venv
+/api/venv

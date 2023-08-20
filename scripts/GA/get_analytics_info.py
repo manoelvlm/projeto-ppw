@@ -70,11 +70,15 @@ def make_response(locations_list, coordinates):
         merged_data = location
         merged_data.update(coordinates[i])
         response.append(merged_data)
+
+    json_data = json.dumps(response)
+    with open('/home/ubuntu/projeto-ppw/scripts/GA/google_analytics_data.json', 'w') as outfile:
+        outfile.write(json_data)
         
     return response
 
 if __name__ == '__main__':
-    locations_list = sample_run_report('402656094', '/home/manoel/projeto-ppw/scripts/GA/credentials.json')
+    locations_list = sample_run_report('402656094', '/home/ubuntu/projeto-ppw/scripts/GA/credentials.json')
     coordinates = get_coordinates(locations_list)
     
     response = make_response(locations_list, coordinates)
